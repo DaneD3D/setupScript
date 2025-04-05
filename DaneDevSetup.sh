@@ -166,6 +166,12 @@ set_default_shell_to_zsh() {
     fi
 }
 
+# Restart the terminal by launching a new shell
+restart_terminal() {
+    echo "🔄 Restarting terminal to apply changes..."
+    exec "$SHELL" -l
+}
+
 # Detect OS and run appropriate setup
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     setup_ubuntu
@@ -175,5 +181,7 @@ else
     echo "❌ Unsupported OS: $OSTYPE"
     exit 1
 fi
+
+restart_terminal
 
 echo "✅ Setup complete."
