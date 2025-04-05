@@ -23,6 +23,7 @@ setup_ubuntu() {
     install_neovim_ubuntu
     install_lazyvim
     set_default_shell_to_zsh
+    install_ranger_fm
 }
 
 # Function to install packages on macOS
@@ -49,6 +50,7 @@ setup_macos() {
     install_neovim_macos
     install_lazyvim
     set_default_shell_to_zsh
+    install_ranger_fm
 }
 
 # Function to install Oh My Zsh
@@ -136,6 +138,18 @@ install_lazyvim() {
         git clone https://github.com/LazyVim/starter "$HOME/.config/nvim"
         rm -rf "$HOME/.config/nvim/.git"
         echo "✅ LazyVim installed."
+    fi
+}
+
+# Function to install ranger-fm using pipx
+install_ranger_fm() {
+    echo "📦 Installing ranger-fm using pipx..."
+    
+    if ! pipx list | grep -q ranger-fm; then
+        pipx install ranger-fm
+        echo "✅ ranger-fm installed."
+    else
+        echo "✅ ranger-fm is already installed."
     fi
 }
 
